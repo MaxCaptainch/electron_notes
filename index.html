@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="main">
+	<div class="input-tools">
+		<input type="text" id = "userText" placeholder="Введите текст...">
+		<div class="input-tools-buttons">
+			<button onclick = "addNode()">Добавить</button>
+			<button onclick = "clearAll();">Очистить</button>
+		</div>
+	</div>
+
+	<div class="pad">
+		<div class="pad-title">
+			<span class="title-state"><input type="checkbox"></span>
+			<span class = "title-node">Текст</span>
+			<span class = "title-time">Время</span>
+			
+		</div>
+		<div class="pad-node">
+			<div class = "node-state"></div>
+			<div class = "node-text"></div>
+			<div class = "node-time"></div>
+		</div>
+	</div>
+
+</div>
+	
+<script>
+const crrState = document.querySelector(".node-state");
+const crrNode = document.querySelector(".node-text");
+const crrTime = document.querySelector(".node-time");
+let userText = document.querySelector("#userText");
+ 
+let crrDate = new Date();
+function formatDate(date) {
+
+  var dd = date.getDate();
+  if (dd < 10) dd = '0' + dd;
+
+  var mm = date.getMonth() + 1;
+  if (mm < 10) mm = '0' + mm;
+
+  var yy = date.getFullYear();
+  if (yy < 10) yy = '0' + yy;
+ 
+
+  return dd + '.' + mm + '.' + yy;
+}
+
+addNode  = () => {
+	if(userText.value !== ''){
+		console.log(typeof(userText.value))
+		let adState = document.createElement('input');
+		adState.type = 'checkbox'
+		let adNode = document.createElement('span');
+		let adTime = document.createElement('span');
+		adNode.innerHTML =  userText.value;
+		adTime.innerHTML = formatDate(crrDate);
+		crrState.append(adState);
+		crrNode.append(adNode);
+		crrTime.append(adTime);
+		userText.value = null;
+	}
+}	
+
+clearAll = () => {
+	
+	crrNode.innerHTML = crrTime.innerHTML ='' ;
+	
+}
+
+</script>
+</body>
+</html>
